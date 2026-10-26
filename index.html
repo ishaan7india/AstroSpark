@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b1c">
+    <title>AstroSpark - Ignite Your Universe!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="universe" id="universe">
+        <div class="stars stars-back" aria-hidden="true"></div>
+        <div class="stars stars-front" aria-hidden="true"></div>
+        <div class="nebula" aria-hidden="true"></div>
+        <header class="topbar">
+            <a class="wordmark" href="#" aria-label="AstroSpark home">
+                <span class="wordmark-star">✦</span> ASTROSPARK
+            </a>
+        </header>
+        <div class="audio-controls">
+            <button id="audioToggle" type="button">
+                Play ambience
+            </button>
+            <select id="audioSelect" aria-label="Choose ambient sound">
+                <option value="space">Deep Space</option>
+                <option value="rain">Cosmic Rain</option>
+                <option value="waves">Space Waves</option>
+            </select>
+            <input type="range" id="volumeControl" min="0" max="100" value="40" aria-label="Volume">
+            <audio id="ambientAudio" loop></audio>
+        </div>
+        <section class="welcome" aria-label="Welcome">
+            <p class="eyebrow" id="date">A moment in the universe</p>
+            <p class="clock" id="clock">00:00:00</p>
+            <h1 id="greeting">Good evening</h1>
+            <p class="subtitle">Ignite Your Universe.</p>
+        </section>
+        <div class="planet-system" aria-hidden="true">
+            <div class="orbit orbit-inner"></div>
+            <div class="orbit orbit-outer"></div>
+            <div class="planet">
+                <div class="planet-surface"></div>
+            </div>
+            <div class="orbiting-object"></div>
+        </div>
+        <form class="search" id="searchForm" role="search">
+            <input type="search" id="searchInput" name="q" placeholder="Search the universe..." aria-label="Search the web">
+            <select id="searchEngine" name="engine" aria-label="Choose search engine">
+                <option value="google">Google</option>
+                <option value="bing">Bing</option>
+                <option value="duckduckgo">DuckDuckGo</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <footer class="footer">
+            <p>Somewhere, beyond the stars.</p>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
