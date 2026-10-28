@@ -1,102 +1,95 @@
-# AstroSpark — Ignite Your Universe.
+# ✦ AstroSpark — Ignite Your Universe
 
-<p align="center">
-  <i>A new tab. A whole universe.</i>
-</p>
+**A new tab. A whole universe.**
 
-AstroSpark is a space-themed browser new-tab experience designed to transform an ordinary browser page into an immersive cosmic environment.
-
-Built from scratch using HTML, CSS and JavaScript, AstroSpark combines a visually engaging space environment with useful everyday tools.
+AstroSpark is a space-themed new-tab experience designed to make every new browser tab feel like entering your own little corner of the universe. Built from scratch using HTML, CSS, and JavaScript, it combines a cinematic cosmic atmosphere with useful everyday tools.
 
 ## Features
 
-### Cosmic Experience
-- Deep-space background with layered stars and nebulae.
-- Glowing central planet with orbital rings.
-- Animated twinkling stars.
-- Pulsating planetary glow.
+### 🌌 Cosmic Experience
+- Animated starfield with twinkling stars.
+- Layered nebula background with subtle pulsing effects.
+- Glowing planet with orbital rings.
 - Orbiting satellite animation.
-- Animated nebula effects.
+- Responsive cosmic interface.
 
-### Personalised Dashboard
-- Live digital clock.
-- Automatically updating date.
-- Time-based greetings.
+### 🕒 Live Dashboard
+- Real-time digital clock.
+- Automatically updated date.
+- Dynamic greeting based on the time of day.
 
-### Universal Search
-- Search directly from the new-tab interface.
-- Switch between Google, Bing and DuckDuckGo.
-- Automatic search input focus.
+### 🔎 Universal Search
+- Search directly from the new-tab page.
+- Choose between Google, Bing, and DuckDuckGo.
+- Keyboard-friendly search input.
 
-### Ambient Audio
-- Audio control interface.
-- Play/pause controls.
-- Ambient sound selection.
-- Adjustable volume.
-- Original ambient music currently in development.
+### ⚡ Productivity Tools
+- **Task Manager:** Add, complete, and delete tasks.
+- **Quick Notes:** Write notes with automatic local saving.
+- **Focus Timer:** A 25-minute focus session with start, pause, resume, and reset controls.
 
-### Planned Features
-- Task management.
-- Quick notes.
-- Focus timer.
-- Custom themes and backgrounds.
-- Additional animations and personalisation options.
+### 🎵 Ambient Audio — In Development
+- Ambient audio controls and volume adjustment.
+- Original background music is being developed for AstroSpark.
 
 ## Tech Stack
 
 | Technology | Purpose |
 |---|---|
-| HTML5 | Structure |
-| CSS3 | Styling and animations |
-| JavaScript | Functionality and interactivity |
-
-No frameworks. No unnecessary complexity. Just building from the basics.
-
-## Getting Started
-
-Clone the repository:
-
-```bash
-git clone https://github.com/ishaan7india/AstroSpark.git
-```
-
-Navigate into the project:
-
-```bash
-cd AstroSpark
-```
-
-Open `index.html` in your browser, or use the Live Server extension in VS Code.
+| HTML5 | Page structure |
+| CSS3 | Styling, layout, and animations |
+| JavaScript | Interactivity and functionality |
+| Local Storage | Saving tasks and notes |
 
 ## Project Structure
 
 ```text
 AstroSpark/
 │
-├── index.html
-├── styles.css
-├── script.js
-│
-└── audio/
-    └── Ambient audio files
+├── index.html       # Main page structure
+├── styles.css       # Styling and animations
+├── script.js        # Interactive functionality
+├── README.md        # Project documentation
+└── assets/          # Images, audio, and other assets
 ```
 
-## Current Status
+## Getting Started
 
-**Early development — Core prototype completed.**
+1. Clone this repository:
 
-The initial interface, cosmic visuals, animations, live clock, dynamic greetings and multi-engine search are implemented. Ambient audio integration and additional productivity features are in progress.
+   ```bash
+   git clone https://github.com/ishaan7india/AstroSpark.git
+   ```
 
-## Vision
+2. Open the project folder.
 
-AstroSpark aims to make every new browser tab feel like entering a personalised universe — combining creativity, functionality and productivity in one immersive experience.
+3. Launch `index.html` in your browser.
 
-This project is also a journey of learning web development from the ground up, understanding every component and building each feature one step at a time.
+No frameworks, build tools, or installations are required.
+
+## Roadmap
+
+- [x] Animated cosmic background
+- [x] Live clock and date
+- [x] Dynamic greetings
+- [x] Multi-engine search
+- [x] Task manager
+- [x] Quick Notes with local storage
+- [x] Focus Timer
+- [x] Planetary and orbital animations
+- [ ] Original ambient music integration
+- [ ] Further UI personalisation
+- [ ] Responsive improvements and final polish
+
+## Contributing
+
+AstroSpark is an evolving personal project. Suggestions, feedback, and ideas are welcome!
+
+## Author
+
+**Ishaan**  
+GitHub: [@ishaan7india](https://github.com/ishaan7india)
 
 ---
 
-<p align="center">
-  <b>AstroSpark — Ignite Your Universe.</b>
-  <br>
-  Made with curiosity and a little cosmic inspiration.
-</p>
+*AstroSpark — Ignite Your Universe.*
