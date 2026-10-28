@@ -37,7 +37,7 @@ Instead of opening another ordinary new tab, step into your own little universe.
 - Customisable display preferences.
 - Clock format options.
 - Search engine preferences.
-- Audio and visual settings.
+- Visual settings and ambient audio playback, with volume and track selection.
 - Reduced-motion support.
 
 ### 🌍 Explore
@@ -108,6 +108,7 @@ AstroSpark/
 │
 ├── assets/
 │   ├── backgrounds/
+│   ├── audio/
 │   ├── images/
 │   └── icons/
 │
@@ -115,6 +116,10 @@ AstroSpark/
 ```
 
 *The structure above represents the intended organisation; filenames and folders may differ in the current implementation.*
+
+### Ambient audio
+
+Two user-supplied MP3 tracks are bundled in `assets/audio/` and can be selected in Settings. Press **Play ambient audio** to start playback; browsers may block autoplay, so the dashboard waits for this user action. The controls remember the selected track, enabled preference, and volume in local storage. The audio files were supplied by the project owner; check their licensing terms before redistributing them.
 
 ---
 

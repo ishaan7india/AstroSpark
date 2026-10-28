@@ -5,7 +5,7 @@ const STORAGE = {
 const defaults = {
   name: "", greeting: true, clock: "24", showDate: true, engine: "google", rememberEngine: true, newTab: false,
   theme: "cosmic", intensity: 70, stars: true, nebula: true, planet: true, reduceMotion: false,
-  audioEnabled: false, audioSelection: "space", audioVolume: 40, tasksVisible: true, notesVisible: true,
+  audioEnabled: false, audioSelection: "atlasaudio-space-space-music-587610", audioVolume: 40, tasksVisible: true, notesVisible: true,
   focusMinutes: 25, breakMinutes: 5, nasaKey: ""
 };
 function readJSON(key, fallback) {
@@ -55,6 +55,50 @@ function configureBackdropRotation() {
 }
 setBackdrop(0, 0, true);
 function saveSettings() { localStorage.setItem(STORAGE.settings, JSON.stringify(settings)); }
+const ambientTracks = {
+  "atlasaudio-space-space-music-587610": "assets/audio/atlasaudio-space-space-music-587610.mp3",
+  "the_mountain-deep-space-587580": "assets/audio/the_mountain-deep-space-587580.mp3"
+};
+if (!ambientTracks[settings.audioSelection]) settings.audioSelection = defaults.audioSelection;
+const ambientAudio = $("ambientAudio");
+function selectAmbientTrack() {
+  const source = ambientTracks[settings.audioSelection] || ambientTracks[defaults.audioSelection];
+  if (ambientAudio.getAttribute("src") !== source) {
+    ambientAudio.pause();
+    ambientAudio.src = source;
+    ambientAudio.load();
+  }
+}
+function updateAudioButton(playing = !ambientAudio.paused) {
+  $("audioToggle").textContent = playing ? "Ⅱ Pause ambient audio" : "▶ Play ambient audio";
+  $("audioToggle").setAttribute("aria-pressed", String(playing));
+}
+ambientAudio.addEventListener("error", () => {
+  $("audioStatus").textContent = "This audio file could not be loaded. Check that the bundled track is present.";
+  updateAudioButton(false);
+});
+ambientAudio.addEventListener("ended", () => updateAudioButton(false));
+ambientAudio.addEventListener("pause", () => updateAudioButton(false));
+ambientAudio.addEventListener("play", () => { $("audioStatus").textContent = "Now playing."; updateAudioButton(true); });
+$("audioToggle").addEventListener("click", async () => {
+  selectAmbientTrack();
+  if (!ambientAudio.paused) { ambientAudio.pause(); $("audioStatus").textContent = "Playback paused."; return; }
+  try {
+    await ambientAudio.play();
+    settings.audioEnabled = true;
+    saveSettings(); syncSettingsForm();
+  } catch (error) {
+    $("audioStatus").textContent = error.name === "NotAllowedError" ? "Playback was blocked. Press play again to allow audio." : "Could not play this track. Check the audio file and try again.";
+  }
+});
+$("audioSelection").addEventListener("change", () => {
+  selectAmbientTrack();
+  $("audioStatus").textContent = "Track selected. Press play when you are ready.";
+});
+$("audioEnabled").addEventListener("change", () => {
+  if (!settings.audioEnabled && !ambientAudio.paused) { ambientAudio.pause(); $("audioStatus").textContent = "Ambient audio disabled."; }
+  else if (settings.audioEnabled && ambientAudio.paused) $("audioStatus").textContent = "Enabled. Press play to start the track.";
+});
 function applySettings() {
   document.documentElement.dataset.theme = settings.theme;
   document.documentElement.style.setProperty("--cosmic-intensity", String(settings.intensity / 100));
@@ -67,6 +111,9 @@ function applySettings() {
   document.querySelector(".tasks-card").hidden = !settings.tasksVisible;
   document.querySelector(".notes-card").hidden = !settings.notesVisible;
   $("searchEngine").value = settings.engine;
+  selectAmbientTrack();
+  ambientAudio.volume = Math.min(1, Math.max(0, settings.audioVolume / 100));
+  $("audioStatus").textContent = settings.audioEnabled && ambientAudio.paused ? "Enabled. Press play to start the track." : "Ready to play.";
   configureBackdropRotation();
   updateClock(); updateGreeting();
 }
