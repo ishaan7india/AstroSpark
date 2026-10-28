@@ -1,91 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080b1c">
-    <title>AstroSpark - Ignite Your Universe!</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a18">
+  <meta name="description" content="AstroSpark — a quiet corner of the universe for your day.">
+  <title>AstroSpark — Ignite Your Universe</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-    <main class="universe" id="universe">
-        <div class="stars stars-back" aria-hidden="true"></div>
-        <div class="stars stars-front" aria-hidden="true"></div>
-        <div class="nebula" aria-hidden="true"></div>
-        <header class="topbar">
-            <a class="wordmark" href="#" aria-label="AstroSpark home">
-                <span class="wordmark-star">✦</span> ASTROSPARK
-            </a>
-        </header>
-        <div class="audio-controls">
-            <button id="audioToggle" type="button">
-                Play ambience
-            </button>
-            <select id="audioSelect" aria-label="Choose ambient sound">
-                <option value="space">Deep Space</option>
-                <option value="rain">Cosmic Rain</option>
-                <option value="waves">Space Waves</option>
-            </select>
-            <input type="range" id="volumeControl" min="0" max="100" value="40" aria-label="Volume">
-            <audio id="ambientAudio" loop></audio>
-        </div>
-        <section class="welcome" aria-label="Welcome">
-            <p class="eyebrow" id="date">A moment in the universe</p>
-            <p class="clock" id="clock">00:00:00</p>
-            <select id="clockFormat" class="clock-format">
-                <option value="24">24-hour</option>
-                <option value="12">12-hour</option>
-            </select>
-            <h1 id="greeting">Good evening</h1>
-            <input type="text" id="userName" class="name-input" placeholder="What should we call you?" maxlength="25" autocomplete="given-name">
-            <p class="subtitle">Ignite Your Universe.</p>
-        </section>
-        <div class="planet-system" aria-hidden="true">
-            <div class="orbit orbit-inner"></div>
-            <div class="orbit orbit-outer"></div>
-            <div class="planet">
-                <div class="planet-surface"></div>
-            </div>
-            <div class="orbiting-object"></div>
-        </div>
+  <main class="universe" id="universe">
+    <div class="space-backdrops" id="spaceBackdrops" aria-hidden="true"><div class="space-backdrop active" id="spaceBackdropA"></div><div class="space-backdrop" id="spaceBackdropB"></div></div>
+    <div class="starfield" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="AstroSpark home"><span class="logo-mark" aria-hidden="true">✦</span><span>ASTRO<span>SPARK</span></span></a>
+      <button class="icon-button settings-trigger" id="openSettings" type="button" aria-label="Open settings" aria-haspopup="dialog">⚙</button>
+    </header>
+
+    <section class="hero" id="top" aria-label="Your dashboard">
+      <div class="planet-system" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="planet"><span></span></div><div class="moon"></div></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="date">A moment in the universe</p>
+        <time class="clock" id="clock">00:00</time>
+        <h1 id="greeting">Good evening<span class="greeting-name"></span></h1>
+        <p class="hero-caption">A little space to think, explore, and begin again.</p>
         <form class="search" id="searchForm" role="search">
-            <input type="search" id="searchInput" name="q" placeholder="Search the universe..." aria-label="Search the web">
-            <select id="searchEngine" name="engine" aria-label="Choose search engine">
-                <option value="google">Google</option>
-                <option value="bing">Bing</option>
-                <option value="duckduckgo">DuckDuckGo</option>
-            </select>
-            <button type="submit">Search</button>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input type="search" id="searchInput" name="q" placeholder="Search the universe..." aria-label="Search the web" autocomplete="off">
+          <select id="searchEngine" aria-label="Search engine"><option value="google">Google</option><option value="bing">Bing</option><option value="duckduckgo">DuckDuckGo</option></select>
+          <button type="submit">Explore <span aria-hidden="true">↗</span></button>
         </form>
-        <section class="productivity" id="productivity">
-            <div class="tool-card tasks-card">
-                <h2>My Tasks</h2>
-                <form id="taskForm">
-                    <input type="text" id="taskInput" placeholder="Add a new task..." autocomplete="off">
-                    <button type="submit">Add</button>
-                </form>
-                <ul id="taskList"></ul>
-            </div>
-            <div class="tool-card notes-card">
-                <h2>Quick Notes</h2>
-                <textarea id="quickNotes" placeholder="Write your thoughts here..." rows="8"></textarea>
-                <p id="notesStatus">Saved automatically</p>
-            </div>
-            <div class="tool-card timer-card">
-                <h2>Focus Timer</h2>
-                <div id="timerDisplay">25:00</div>
-                <div class="timer-buttons">
-                    <button id="timerStart">Start</button>
-                    <button id="timerReset">Reset</button>
-                </div>
-                <p id="timerStatus">Ready to focus?</p>
-            </div>
-        </section>
-        <footer class="footer">
-            <p>Somewhere, beyond the stars.</p>
-        </footer>
-    </main>
-    <script src="script.js"></script>
+      </div>
+      <div class="hero-footnote"><span class="status-dot"></span> YOUR UNIVERSE, IN GOOD ORDER</div>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Your space">
+      <article class="panel apod-panel" aria-labelledby="apodHeading">
+        <div class="section-heading"><div><p class="eyebrow">A WINDOW TO THE COSMOS</p><h2 id="apodHeading">Today in space</h2></div><span class="nasa-mark">NASA <span>✦</span></span></div>
+        <div id="apodStatus" class="apod-status" role="status" aria-live="polite">Finding today's universe…</div>
+        <div id="apodContent" class="apod-content" hidden>
+          <div class="apod-media" id="apodMedia">
+            <img id="apodImage" alt="" loading="lazy" hidden>
+            <video id="apodVideo" controls playsinline preload="metadata" hidden></video>
+            <iframe id="apodFrame" title="Astronomy Picture of the Day video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen hidden></iframe>
+            <a class="media-open" id="apodMediaLink" target="_blank" rel="noopener noreferrer" aria-label="Open original astronomy media">↗</a>
+          </div>
+          <div class="apod-copy"><div class="apod-meta"><time id="apodDate"></time><div class="date-nav"><button type="button" id="apodPrev" aria-label="Previous day">←</button><input type="date" id="apodPicker" aria-label="Choose an astronomy picture date"><button type="button" id="apodNext" aria-label="Next day">→</button></div></div>
+            <h3 id="apodTitle"></h3><p class="credit" id="apodCredit"></p>
+            <div class="explanation" id="apodExplanation"></div><button class="text-button" id="expandExplanation" type="button" aria-expanded="false">Read full story <span aria-hidden="true">⌄</span></button>
+            <a class="original-link" id="apodOriginal" target="_blank" rel="noopener noreferrer">View on NASA ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <aside class="side-column" aria-label="Daily tools">
+        <article class="panel tasks-card">
+          <div class="section-heading compact"><div><p class="eyebrow">MAKE A LITTLE PROGRESS</p><h2>Launch list <span id="taskCount" class="count">0</span></h2></div></div>
+          <form class="task-form" id="taskForm"><input id="taskInput" type="text" maxlength="120" placeholder="Add something to do…" aria-label="New task"><button type="submit" aria-label="Add task">＋</button></form>
+          <ul id="taskList" class="task-list"></ul><p id="taskEmpty" class="empty-state">Your orbit is clear. Add a task to get started.</p>
+        </article>
+        <article class="panel focus-card">
+          <div class="section-heading compact"><div><p class="eyebrow">ONE THING AT A TIME</p><h2>Focus orbit</h2></div><button class="quiet-button" id="timerMode" type="button" aria-label="Switch focus or break timer">FOCUS</button></div>
+          <div class="timer-ring" id="timerRing"><span id="timerDisplay">25:00</span></div>
+          <div class="timer-buttons"><button class="primary-button" id="timerStart" type="button">Begin focus</button><button class="quiet-button" id="timerReset" type="button">Reset</button></div>
+          <p id="timerStatus" class="timer-status" aria-live="polite">A clear mind, one orbit at a time.</p>
+        </article>
+      </aside>
+      <article class="panel notes-card"><div class="section-heading compact"><div><p class="eyebrow">CATCH A THOUGHT</p><h2>Quick notes</h2></div><span class="save-status" id="notesStatus">Saved on this device</span></div><textarea id="quickNotes" placeholder="A thought, an idea, a reminder…" aria-label="Quick notes" rows="5"></textarea></article>
+      <section class="panel nasa-explorer" aria-labelledby="nasaExplorerHeading">
+        <div class="section-heading explorer-heading"><div><p class="eyebrow">NASA OPEN DATA</p><h2 id="nasaExplorerHeading">Go a little further.</h2><p class="explorer-subtitle">Live snapshots from across our solar system and home planet.</p></div><span class="nasa-mark">NASA <span>✦</span></span></div>
+        <div class="explorer-tabs" role="tablist" aria-label="NASA data explorer">
+          <button class="explorer-tab active" type="button" role="tab" aria-selected="true" data-api="neo">Asteroids</button>
+          <button class="explorer-tab" type="button" role="tab" aria-selected="false" data-api="donki">Space weather</button>
+          <button class="explorer-tab" type="button" role="tab" aria-selected="false" data-api="eonet">Earth events</button>
+          <button class="explorer-tab" type="button" role="tab" aria-selected="false" data-api="epic">Earth view</button>
+          <button class="explorer-tab" type="button" role="tab" aria-selected="false" data-api="images">NASA media</button>
+        </div>
+        <div class="explorer-controls">
+          <p id="apiDescription">Near-Earth asteroid close approaches over the next few days.</p>
+          <div class="explorer-query" id="mediaQuery" hidden><input id="mediaSearch" type="search" maxlength="100" placeholder="Try “aurora”, “Jupiter”, or “Apollo”…" aria-label="Search NASA media"><select id="mediaType" aria-label="NASA media type"><option value="image,video">Images + video</option><option value="image">Images</option><option value="video">Video</option></select></div>
+          <label class="event-filter" id="eventFilter" hidden for="eventCategory">Event type <select id="eventCategory"><option value="">All active events</option><option value="wildfires">Wildfires</option><option value="severeStorms">Severe storms</option><option value="volcanoes">Volcanoes</option><option value="floods">Floods</option><option value="earthquakes">Earthquakes</option><option value="dustHaze">Dust and haze</option></select></label>
+          <label class="event-filter" id="donkiFilter" hidden for="donkiType">Alert type <select id="donkiType"><option value="all">All alerts</option><option value="CME">Coronal mass ejections</option><option value="FLR">Solar flares</option><option value="GST">Geomagnetic storms</option><option value="IPS">Interplanetary shocks</option><option value="SEP">Solar energetic particles</option></select></label>
+          <button class="primary-button" id="loadNasaApi" type="button">Load asteroid data <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="api-status" id="nasaApiStatus" role="status" aria-live="polite" hidden></div>
+        <div class="api-results" id="nasaApiResults" aria-live="polite"></div>
+      </section>
+      <article class="panel explore-card"><div class="explore-intro"><p class="eyebrow">A SMALLER VIEW OF THE INFINITE</p><h2>Explore our<br><span>solar system.</span></h2><p>Eight worlds, one star, and countless reasons to look up.</p><button class="text-button" id="exploreToggle" type="button" aria-expanded="false" aria-controls="planetFacts">Meet the planets <span aria-hidden="true">＋</span></button></div><div class="solar-art" aria-hidden="true"><div class="sun"></div><i class="planet-dot p1"></i><i class="planet-dot p2"></i><i class="planet-dot p3"></i><i class="planet-dot p4"></i><i class="planet-dot p5"></i><i class="planet-dot p6"></i><i class="planet-dot p7"></i><i class="planet-dot p8"></i><div class="solar-orbit so1"></div><div class="solar-orbit so2"></div><div class="solar-orbit so3"></div><div class="solar-orbit so4"></div></div></article>
+      <div class="planet-facts panel" id="planetFacts" hidden><p><b>Mercury</b> — a world of extremes, racing around the Sun in just 88 days.</p><p><b>Venus</b> — our brightest neighbor, wrapped in thick clouds.</p><p><b>Earth</b> — the only world we know to host life.</p><p><b>Mars</b> — home to the largest volcano in the solar system.</p><p><b>Jupiter</b> — a gas giant with storms larger than Earth.</p><p><b>Saturn</b> — its rings span about 282,000 km across.</p><p><b>Uranus</b> — an ice giant that rotates on its side.</p><p><b>Neptune</b> — supersonic winds sweep its deep blue atmosphere.</p></div>
+    </section>
+    <footer class="footer"><span>✦</span> ASTROSPARK · IGNITE YOUR UNIVERSE</footer>
+  </main>
+
+  <div class="settings-backdrop" id="settingsBackdrop" hidden></div>
+  <aside class="settings-panel" id="settingsPanel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-hidden="true" tabindex="-1">
+    <div class="settings-header"><div><p class="eyebrow">MAKE IT YOURS</p><h2 id="settingsTitle">Settings</h2></div><button class="icon-button" id="closeSettings" type="button" aria-label="Close settings">×</button></div>
+    <div class="settings-body">
+      <section class="settings-group"><h3>General</h3><label class="field-label" for="displayName">Display name</label><input class="settings-input" id="displayName" maxlength="25" placeholder="Your name"><label class="switch-row"><span>Personal greeting</span><input type="checkbox" id="greetingEnabled"><i></i></label><label class="field-label" for="settingClock">Clock format</label><select class="settings-select" id="settingClock"><option value="24">24-hour</option><option value="12">12-hour</option></select><label class="switch-row"><span>Show date</span><input type="checkbox" id="showDate"><i></i></label></section>
+      <section class="settings-group"><h3>Search</h3><label class="field-label" for="settingEngine">Default search engine</label><select class="settings-select" id="settingEngine"><option value="google">Google</option><option value="bing">Bing</option><option value="duckduckgo">DuckDuckGo</option></select><label class="switch-row"><span>Remember selected engine</span><input type="checkbox" id="rememberEngine"><i></i></label><label class="switch-row"><span>Open results in new tab</span><input type="checkbox" id="newTabSearch"><i></i></label></section>
+      <section class="settings-group"><h3>Appearance</h3><label class="field-label" for="themeSetting">Theme</label><select class="settings-select" id="themeSetting"><option value="cosmic">Cosmic violet</option><option value="midnight">Midnight blue</option></select><label class="field-label" for="intensitySetting">Background intensity <output id="intensityValue">70%</output></label><input class="range-input" id="intensitySetting" type="range" min="20" max="100" step="5"><label class="switch-row"><span>Rotating space backgrounds</span><input type="checkbox" id="nebulaEnabled"><i></i></label><label class="switch-row"><span>Star animation</span><input type="checkbox" id="starsEnabled"><i></i></label><label class="switch-row"><span>Planet animation</span><input type="checkbox" id="planetEnabled"><i></i></label><label class="switch-row"><span>Reduce motion</span><input type="checkbox" id="reduceMotion"><i></i></label></section>
+      <section class="settings-group"><h3>Audio</h3><p class="settings-note">Original AstroSpark audio is not installed yet. Add audio files under <code>assets/audio/</code> when ready.</p><label class="switch-row"><span>Enable ambient audio</span><input type="checkbox" id="audioEnabled"><i></i></label><label class="field-label" for="audioSelection">Audio selection</label><select class="settings-select" id="audioSelection"><option value="space">Deep Space</option><option value="rain">Cosmic Rain</option><option value="waves">Space Waves</option></select><label class="field-label" for="audioVolume">Volume <output id="volumeValue">40%</output></label><input class="range-input" id="audioVolume" type="range" min="0" max="100"><button class="quiet-button audio-play" id="audioToggle" type="button" disabled>▶ Audio files not added yet</button></section>
+      <section class="settings-group"><h3>Productivity</h3><label class="switch-row"><span>Show task list</span><input type="checkbox" id="tasksVisible"><i></i></label><label class="switch-row"><span>Show quick notes</span><input type="checkbox" id="notesVisible"><i></i></label><label class="field-label" for="focusDuration">Focus duration · minutes</label><input class="settings-input" id="focusDuration" type="number" min="1" max="180"><label class="field-label" for="breakDuration">Break duration · minutes</label><input class="settings-input" id="breakDuration" type="number" min="1" max="60"></section>
+      <section class="settings-group"><h3>NASA APIs</h3><label class="field-label" for="nasaKey">Optional NASA API key</label><input class="settings-input" id="nasaKey" type="password" autocomplete="off" placeholder="DEMO_KEY"><p class="settings-note">Used by APOD, asteroid, space-weather, and EPIC Earth-image requests. EONET and NASA media search do not need a key. Stored only in this browser; a browser key is visible in network traffic. Use a serverless proxy to protect a production key.</p></section>
+    </div>
+    <div class="settings-footer"><button class="quiet-button" id="resetSettings" type="button">Reset settings</button><button class="primary-button" id="doneSettings" type="button">Done</button></div>
+  </aside>
+  <script src="script.js"></script>
 </body>
 </html>
