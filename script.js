@@ -1,5 +1,4 @@
 "use strict";
-
 const STORAGE = {
   settings: "astroSettingsV2", tasks: "astroTasks", notes: "astroNotes", timer: "astroTimerState", apod: "astroApodCacheV1"
 };
@@ -18,7 +17,6 @@ const $ = (id) => document.getElementById(id);
 const settingsPanel = $("settingsPanel");
 settingsPanel.inert = true;
 let lastFocused = null;
-
 const spaceBackgrounds = [
   "assets/backgrounds/cosmic-cliffs-carina.png",
   "assets/backgrounds/dumbbell-nebula.jpg",
@@ -56,7 +54,6 @@ function configureBackdropRotation() {
   }, 12000);
 }
 setBackdrop(0, 0, true);
-
 function saveSettings() { localStorage.setItem(STORAGE.settings, JSON.stringify(settings)); }
 function applySettings() {
   document.documentElement.dataset.theme = settings.theme;
@@ -86,7 +83,6 @@ function updateClock() {
   updateGreeting();
 }
 setInterval(updateClock, 1000); updateClock();
-
 const settingBindings = {
   displayName: ["name", "value"], greetingEnabled: ["greeting", "checked"], settingClock: ["clock", "value"], showDate: ["showDate", "checked"],
   settingEngine: ["engine", "value"], rememberEngine: ["rememberEngine", "checked"], newTabSearch: ["newTab", "checked"],
@@ -126,7 +122,6 @@ $("searchForm").addEventListener("submit", (event) => {
   const url = endpoints[settings.engine] + encodeURIComponent(query);
   if (settings.newTab) window.open(url, "_blank", "noopener,noreferrer"); else window.location.assign(url);
 });
-
 function openSettings() {
   lastFocused = document.activeElement; $("settingsBackdrop").hidden = false;
   settingsPanel.inert = false; requestAnimationFrame(() => settingsPanel.classList.add("open")); settingsPanel.setAttribute("aria-hidden", "false");
@@ -147,7 +142,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 $("resetSettings").addEventListener("click", () => { settings = { ...defaults }; saveSettings(); syncSettingsForm(); applySettings(); setTimerMode("focus", true); });
-
 let tasks = readJSON(STORAGE.tasks, []);
 if (!Array.isArray(tasks)) tasks = [];
 function saveTasks() { localStorage.setItem(STORAGE.tasks, JSON.stringify(tasks)); }
@@ -165,14 +159,12 @@ function renderTasks() {
 }
 $("taskForm").addEventListener("submit", (event) => { event.preventDefault(); const text = $("taskInput").value.trim(); if (!text) return; tasks.unshift({ text, completed: false }); saveTasks(); renderTasks(); $("taskInput").value = ""; $("taskInput").focus(); });
 renderTasks();
-
 $("quickNotes").value = localStorage.getItem(STORAGE.notes) || "";
 let notesSaveTimer;
 $("quickNotes").addEventListener("input", () => {
   $("notesStatus").textContent = "Saving…"; clearTimeout(notesSaveTimer);
   notesSaveTimer = setTimeout(() => { localStorage.setItem(STORAGE.notes, $("quickNotes").value); $("notesStatus").textContent = "Saved on this device"; }, 250);
 });
-
 let timer = readJSON(STORAGE.timer, null);
 if (!timer || typeof timer.remaining !== "number") timer = { mode: "focus", remaining: settings.focusMinutes * 60, running: false, endsAt: null };
 function persistTimer() { localStorage.setItem(STORAGE.timer, JSON.stringify(timer)); }
@@ -199,9 +191,7 @@ $("timerStart").addEventListener("click", () => {
 $("timerReset").addEventListener("click", () => { setTimerMode(timer.mode, true); $("timerStatus").textContent = "Timer reset. Ready when you are."; });
 $("timerMode").addEventListener("click", () => setTimerMode(timer.mode === "focus" ? "break" : "focus", true));
 updateTimer(); persistTimer(); setInterval(() => { updateTimer(); if (timer.running) persistTimer(); }, 250);
-
 $("exploreToggle").addEventListener("click", (event) => { const facts = $("planetFacts"); facts.hidden = !facts.hidden; event.currentTarget.setAttribute("aria-expanded", String(!facts.hidden)); event.currentTarget.innerHTML = facts.hidden ? 'Meet the planets <span aria-hidden="true">＋</span>' : 'Close planet guide <span aria-hidden="true">−</span>'; });
-
 function localDateString(date) { const year = date.getFullYear(); const month = String(date.getMonth() + 1).padStart(2, "0"); const day = String(date.getDate()).padStart(2, "0"); return `${year}-${month}-${day}`; }
 const apodToday = localDateString(new Date());
 $("apodPicker").max = apodToday; $("apodPicker").min = "1995-06-16";
@@ -324,9 +314,7 @@ $("expandExplanation").addEventListener("click", (event) => { const expanded = e
 $("apodPicker").addEventListener("change", (event) => loadApod(event.target.value));
 function shiftApod(days) { const date = new Date(`${activeApodDate}T12:00:00`); date.setDate(date.getDate() + days); loadApod(localDateString(date)); }
 $("apodPrev").addEventListener("click", () => shiftApod(-1)); $("apodNext").addEventListener("click", () => shiftApod(1));
-
 syncSettingsForm(); applySettings(); loadApod();
-
 const apiDescriptions = {
   neo: "Near-Earth asteroid close approaches over the next few days.",
   donki: "Space-weather notifications logged by NASA's DONKI service.",
