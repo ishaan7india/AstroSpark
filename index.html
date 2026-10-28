@@ -52,6 +52,30 @@
             </select>
             <button type="submit">Search</button>
         </form>
+        <section class="productivity" id="productivity">
+            <div class="tool-card tasks-card">
+                <h2>My Tasks</h2>
+                <form id="taskForm">
+                    <input type="text" id="taskInput" placeholder="Add a new task..." autocomplete="off">
+                    <button type="submit">Add</button>
+                </form>
+                <ul id="taskList"></ul>
+            </div>
+            <div class="tool-card notes-card">
+                <h2>Quick Notes</h2>
+                <textarea id="quickNotes" placeholder="Write your thoughts here..." rows="8"></textarea>
+                <p id="notesStatus">Saved automatically</p>
+            </div>
+            <div class="tool-card timer-card">
+                <h2>Focus Timer</h2>
+                <div id="timerDisplay">25:00</div>
+                <div class="timer-buttons">
+                    <button id="timerStart">Start</button>
+                    <button id="timerReset">Reset</button>
+                </div>
+                <p id="timerStatus">Ready to focus?</p>
+            </div>
+        </section>
         <footer class="footer">
             <p>Somewhere, beyond the stars.</p>
         </footer>

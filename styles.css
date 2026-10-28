@@ -11,16 +11,28 @@ html, body {
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #080b1c;
+    background:
+        radial-gradient(
+            ellipse at 20% 40%,
+            rgba(100, 50, 180, 0.22),
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 80% 60%,
+            rgba(30, 100, 180, 0.18),
+            transparent 60%
+        ),
+        #080b1c;
     color: #ffffff;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .universe {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: visible;
     background: #080b1c;
 }
 
@@ -344,6 +356,177 @@ body {
     width: 85px;
     accent-color: #a78bfa;
     cursor: pointer;
+}
+
+.productivity {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: min(600px, 90%);
+}
+
+.tool-card {
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(15px);
+    color: white;
+}
+
+.tool-card h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+#taskForm {
+    display: flex;
+    gap: 10px;
+}
+
+#taskInput {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    outline: none;
+}
+
+#taskInput::placeholder {
+    color: #a5a5bd;
+}
+
+#taskForm button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #8b5cf6;
+    color: white;
+    cursor: pointer;
+}
+
+#taskList {
+    list-style: none;
+    margin-top: 16px;
+}
+
+#taskList li {
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#taskList input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #8b5cf6;
+    cursor: pointer;
+}
+
+#taskList span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#taskList .completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+#taskList button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 7px;
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    cursor: pointer;
+}
+
+.notes-card textarea {
+    width: 100%;
+    min-height: 160px;
+    resize: vertical;
+
+    padding: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.notes-card textarea::placeholder {
+    color: #a5a5bd;
+}
+
+#notesStatus {
+    margin-top: 10px;
+    color: #a5a5bd;
+    font-size: 12px;
+}
+
+#taskList span.completed {
+    text-decoration: line-through;
+    text-decoration-color: #a78bfa;
+    opacity: 0.45;
+}
+
+.timer-card {
+    text-align: center;
+}
+
+#timerDisplay {
+    margin: 20px 0;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #c4b5fd;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.timer-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #8b5cf6;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#timerStatus {
+    margin-top: 14px;
+    color: #a5a5bd;
+    font-size: 13px;
 }
 
 @keyframes twinkle {
