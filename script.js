@@ -1,14 +1,25 @@
 const dateElement = document.getElementById("date");
 const greetingElement = document.getElementById("greeting");
+const userNameInput = document.getElementById("userName");
+userNameInput.value = localStorage.getItem("astroUserName") || "";
+userNameInput.addEventListener("input", function() {
+    localStorage.setItem("astroUserName", userNameInput.value.trim());
+    updateGreeting();
+});
 function updateGreeting() {
     const currentHour = new Date().getHours();
+    const name = userNameInput.value.trim();
+    let greeting;
     if (currentHour < 12) {
-        greetingElement.textContent = "Good morning";
+        greeting = "Good morning";
     } else if (currentHour < 17) {
-        greetingElement.textContent = "Good afternoon";
+        greeting = "Good afternoon";
     } else {
-        greetingElement.textContent = "Good evening";
+        greeting = "Good evening";
     }
+    greetingElement.textContent = name
+        ? `${greeting}, ${name}`
+        : greeting;
 }
 updateGreeting();
 setInterval(updateGreeting, 60000);
@@ -25,21 +36,30 @@ function updateDate() {
 updateDate();
 setInterval(updateDate, 60000);
 const clockElement = document.getElementById("clock");
+const clockFormat = document.getElementById("clockFormat");
+clockFormat.value = localStorage.getItem("astroClockFormat") || "24";
+clockFormat.addEventListener("change", function() {
+    localStorage.setItem("astroClockFormat", clockFormat.value);
+    updateClock();
+});
 function updateClock() {
     const currentTime = new Date();
     const timeString = currentTime.toLocaleTimeString("en-IN", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
-        hour12: false
+        hour12: clockFormat.value === "12"
     });
     clockElement.textContent = timeString;
-}
-updateClock();
+}updateClock();
 setInterval(updateClock, 1000);
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 const searchEngine = document.getElementById("searchEngine");
+searchEngine.value = localStorage.getItem("astroSearchEngine") || "google";
+searchEngine.addEventListener("change", function() {
+    localStorage.setItem("astroSearchEngine", searchEngine.value);
+});
 searchForm.addEventListener("submit", function(event) {
     event.preventDefault();
     const query = searchInput.value.trim();
@@ -131,7 +151,7 @@ const timerDisplay = document.getElementById("timerDisplay");
 const timerStart = document.getElementById("timerStart");
 const timerReset = document.getElementById("timerReset");
 const timerStatus = document.getElementById("timerStatus");
-let timerSeconds = 25 * 60;
+let timerSeconds = Number(localStorage.getItem("astroTimer")) || 25 * 60;
 let timerInterval = null;
 function updateTimerDisplay() {
     const minutes = Math.floor(timerSeconds / 60);
@@ -155,6 +175,7 @@ timerStart.addEventListener("click", function() {
     timerInterval = setInterval(function() {
         timerSeconds--;
         updateTimerDisplay();
+        localStorage.setItem("astroTimer", timerSeconds);
         if (timerSeconds <= 0) {
             clearInterval(timerInterval);
             timerInterval = null;
@@ -169,6 +190,7 @@ timerReset.addEventListener("click", function() {
     clearInterval(timerInterval);
     timerInterval = null;
     timerSeconds = 25 * 60;
+    localStorage.setItem("astroTimer", timerSeconds);
     updateTimerDisplay();
     timerStart.textContent = "Start";
     timerStatus.textContent = "Ready to focus?";

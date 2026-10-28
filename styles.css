@@ -529,6 +529,27 @@ body {
     font-size: 13px;
 }
 
+.name-input {
+    display: block;
+    width: 220px;
+    margin: 12px auto;
+    padding: 9px 12px;
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    outline: none;
+}
+
+.name-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.name-input:focus {
+    border-color: #a78bfa;
+}
+
 @keyframes twinkle {
     from {
         opacity: 0.15;
